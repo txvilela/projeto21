@@ -7,6 +7,7 @@
 #include "baralho.hpp"
 #include "mesa.hpp"
 #include "jogador.hpp"
+#include "Jogo.hpp"
 
 int main() {
 	
@@ -18,6 +19,7 @@ int main() {
 	Baralho baralho;
 	Mesa mesa;
 	Jogador jogador;
+	Fichas fichas;
 
 	//baralho.imprimir();
 	
@@ -32,6 +34,8 @@ int main() {
 		std::cout << "Quer parar?" << std::endl;
 		std::string respostinha;
 		std::cin >> respostinha;
+
+		std::cout << fichas.veResultado() << std::endl << std::endl;
 
 		if (respostinha == "ok") {
 			return false;

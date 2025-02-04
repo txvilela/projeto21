@@ -130,6 +130,7 @@
     <ClCompile Include="baralho.cpp" />
     <ClCompile Include="carta.cpp" />
     <ClCompile Include="chama_mesa.cpp" />
+    <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="mesa.cpp" />
     <ClCompile Include="jogador.cpp" />
     <ClCompile Include="main.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="baralho.hpp" />
     <ClInclude Include="carta.hpp" />
     <ClInclude Include="chama_mesa.hpp" />
+    <ClInclude Include="Jogo.hpp" />
     <ClInclude Include="mesa.hpp" />
     <ClInclude Include="jogador.hpp" />
   </ItemGroup>

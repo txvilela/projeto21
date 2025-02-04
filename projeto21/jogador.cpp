@@ -37,6 +37,7 @@ void Jogador::mostraCarta(const std::vector <Carta>& cartasjogador, const std::s
 	std::cout << std::endl;
 	std::cout << "Seus pontos " << calculaPontos() << std::endl;
 	
+
 }
 
 bool Jogador::resposta() {
