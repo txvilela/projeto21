@@ -1,17 +1,10 @@
 #include "Jogo.hpp"
 
-int Fichas:: veResultado() {
-	Mesa mesa;
-	Jogador jogador;
-	int valorJogador;
-	valorJogador = jogador.calculaPontos();
+int Fichas::veResultado( Mesa& mesa,  Jogador& jogador) {
 
-	int valorMesa;
+	int valorJogador = jogador.calculaPontos();
 
-	valorMesa = mesa.calculaPontosMesa();
+	int valorMesa = mesa.calculaPontosMesa();
 
-	int valorT;
-	valorT = valorMesa - valorJogador;
-	
-	return valorT;
+	return valorMesa - valorJogador;
 }

@@ -17,5 +17,5 @@ public:
 		fichasJogador = 0;
 	}
 
-	int veResultado();
+	int veResultado(Mesa& mesa, Jogador& jogador);
 };

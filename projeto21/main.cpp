@@ -30,15 +30,17 @@ int main() {
 		if (!jogador.maoJogador(baralho.darCarta(), baralho.darCarta(), baralho)) {
 			mesa.mostratudo();
 		}
+
+		std::cout << fichas.veResultado(mesa, jogador) << std::endl << std::endl;
 		//chama_Mesa(baralho.darCarta(), baralho.darCarta(), baralho.darCarta(), baralho.darCarta());
 		std::cout << "Quer parar?" << std::endl;
 		std::string respostinha;
 		std::cin >> respostinha;
 
-		std::cout << fichas.veResultado() << std::endl << std::endl;
+		
 
 		if (respostinha == "ok") {
-			return false;
+			return 0;
 		}
 	}
 
