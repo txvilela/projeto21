@@ -1,10 +1,17 @@
-#pragma once
 #include <iostream>
-#include "mesa.hpp"
-#include "jogador.hpp"
+#ifndef  JOGO_HPP
+#define JOGO_HPP
+
+class Mesa;
+class Jogador;
+
+
+
+
 
 
 class  Fichas {
+
 
 private:
 	int fichasJogador;
@@ -16,6 +23,9 @@ public:
 	Fichas() {
 		fichasJogador = 0;
 	}
-
+	
 	int veResultado(Mesa& mesa, Jogador& jogador);
+	void compraFichas();
 };
+
+#endif

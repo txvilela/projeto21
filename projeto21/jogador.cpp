@@ -1,8 +1,13 @@
 #include <iostream>
 #include "jogador.hpp"
+#include "baralho.hpp"
+#include "carta.hpp"
+#include "mesa.hpp"
+#include "Jogo.hpp"
 
 Jogador::Jogador() {}
 Mesa mesa;
+Fichas fichas;
 
 bool Jogador::maoJogador(const Carta& carta1, const Carta& carta2, Baralho& baralho) {
 	cartasjogador.push_back(carta1);
@@ -42,6 +47,14 @@ void Jogador::mostraCarta(const std::vector <Carta>& cartasjogador, const std::s
 
 bool Jogador::resposta() {
 	char resposta;
+	if (calculaPontos() == 21) {
+		std::cout << std::endl;
+		if (cartasjogador.size() == 2) {
+			std::cout << "Blackjack!!!" << std::endl << std::endl;
+		}
+		return false;
+	}
+
 	std::cout << std::endl << "Vai querer outra carta? (s/n)" << std::endl;
 	std::cin >> resposta;
 	resposta = std::tolower(resposta);
@@ -76,4 +89,12 @@ int Jogador::calculaPontos() {
 	return total;
 }
 
+//int Jogador::retornaSaldoFichas() {
+//	return saldoFichas;
+//}
+
+//int Jogador::comprafichas() {
+//	
+//	fichas.compraFichas();
+//}
 

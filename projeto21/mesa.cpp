@@ -1,5 +1,8 @@
 #include <iostream>
 #include "mesa.hpp"
+#include "baralho.hpp"
+#include "carta.hpp"
+#include "jogador.hpp"
 
 Mesa::Mesa() {}
 

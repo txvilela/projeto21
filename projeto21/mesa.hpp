@@ -1,4 +1,7 @@
-#pragma once
+#ifndef MESA_HPP
+#define MESA_HPP
+
+
 #include <iostream>
 #include <vector>
 #include "baralho.hpp"
@@ -19,3 +22,4 @@ public:
 	int calculaPontosMesa();
 };
 
+#endif // !MESA_HPP

@@ -13,7 +13,7 @@ int main() {
 	
 	while (true) {
 	
-	srand(static_cast<unsigned int>(time(0)));
+		srand(static_cast<unsigned int>(time(0)));
 	
 	
 	Baralho baralho;
@@ -22,7 +22,8 @@ int main() {
 	Fichas fichas;
 
 	//baralho.imprimir();
-	
+		
+
 		mesa.mesa(baralho.darCarta(), baralho.darCarta());
 		mesa.mostracartamesa();
 
@@ -32,6 +33,10 @@ int main() {
 		}
 
 		std::cout << fichas.veResultado(mesa, jogador) << std::endl << std::endl;
+
+		fichas.compraFichas();
+
+
 		//chama_Mesa(baralho.darCarta(), baralho.darCarta(), baralho.darCarta(), baralho.darCarta());
 		std::cout << "Quer parar?" << std::endl;
 		std::string respostinha;
