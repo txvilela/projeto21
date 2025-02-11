@@ -34,8 +34,9 @@ int main() {
 
 		std::cout << fichas.veResultado(mesa, jogador) << std::endl << std::endl;
 
-		fichas.compraFichas();
+		/*fichas.compraFichas();*/
 
+		jogador.comprafichas();
 
 		//chama_Mesa(baralho.darCarta(), baralho.darCarta(), baralho.darCarta(), baralho.darCarta());
 		std::cout << "Quer parar?" << std::endl;

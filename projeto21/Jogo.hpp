@@ -14,18 +14,15 @@ class  Fichas {
 
 
 private:
-	int fichasJogador;
+	int fichasJogador = 0;
 	int fichasMesa = 1000;
 
 
 
 public:
-	Fichas() {
-		fichasJogador = 0;
-	}
-	
+		
 	int veResultado(Mesa& mesa, Jogador& jogador);
-	void compraFichas();
+	int compraFichas();
 };
 
 #endif

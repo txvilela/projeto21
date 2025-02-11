@@ -5,9 +5,11 @@
 #include "mesa.hpp"
 #include "Jogo.hpp"
 
-Jogador::Jogador() {}
+Jogador play;
 Mesa mesa;
 Fichas fichas;
+
+Jogador::Jogador(){}
 
 bool Jogador::maoJogador(const Carta& carta1, const Carta& carta2, Baralho& baralho) {
 	cartasjogador.push_back(carta1);
@@ -89,12 +91,13 @@ int Jogador::calculaPontos() {
 	return total;
 }
 
-//int Jogador::retornaSaldoFichas() {
-//	return saldoFichas;
-//}
+int Jogador::retornaSaldoFichas() {
+	return saldoFichas;
+}
 
-//int Jogador::comprafichas() {
-//	
-//	fichas.compraFichas();
-//}
+void Jogador::comprafichas() {
+	
+	play.saldoFichas = fichas.compraFichas();
+	 std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
+}
 
