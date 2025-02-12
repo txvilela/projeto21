@@ -75,6 +75,7 @@ void Fichas::aposta(int& saldoJogador) {
 	Jogador jogador;
 	Mesa mesa;
 
+	
 	int aposta;
 
 	std::cout << "Qual será sua aposto (Valor minimo 25 fichas)" << std::endl;
@@ -94,7 +95,11 @@ void Fichas::aposta(int& saldoJogador) {
 		std::cin >> aposta;
 		
 	}
-	
+	 saldoJogador -= aposta;
+	 /*std::cout << std::endl << std::endl << std::endl;
+	 std::cout << saldoJogador << std::endl;
+	 std::cout << std::endl << std::endl << std::endl;
+	*/
 }
 
 

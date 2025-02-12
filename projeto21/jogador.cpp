@@ -101,7 +101,8 @@ void Jogador::inicioFichas() {
 	
 	std::cout << "Você começa com " << play.retornaSaldoFichas() << " fichas seu objetivo é zerar as " << mesa.retornaSaldoFichasMesa() << " fichas da mesa" << std::endl << std::endl;
 	/*std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;*/
-	fichas.aposta(play.retornaSaldoFichas());
+
+	fichas.aposta(play.saldoFichas);
 
 }
 
