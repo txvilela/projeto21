@@ -95,6 +95,16 @@ int Jogador::retornaSaldoFichas() {
 	return saldoFichas;
 }
 
+
+void Jogador::inicioFichas() {
+	play.saldoFichas = fichas.fichasIniciais();
+	
+	std::cout << "Você começa com " << play.retornaSaldoFichas() << " fichas seu objetivo é zerar as " << mesa.retornaSaldoFichasMesa() << " fichas da mesa" << std::endl << std::endl;
+	/*std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;*/
+	fichas.aposta(play.retornaSaldoFichas());
+
+}
+
 void Jogador::comprafichas() {
 	
 	play.saldoFichas = fichas.compraFichas();

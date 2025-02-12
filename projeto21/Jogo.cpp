@@ -2,6 +2,7 @@
 #include "mesa.hpp"
 #include "jogador.hpp"
 
+
 int Fichas::veResultado( Mesa& mesa,  Jogador& jogador) {
 
 	int valorJogador = jogador.calculaPontos();
@@ -29,7 +30,7 @@ int Fichas::compraFichas() {
 	if (res == 's') {
 		int dificuldadeFichas;
 		
-		std::cout << "Quantas fichas você quer começar (Dificuldade!!!)" << std::endl << std::endl;
+		/*std::cout << "Quantas fichas você quer começar (Dificuldade!!!)" << std::endl << std::endl;*/
 		std::cout << "Você pode escolher entre: 25 / 50 / 100" << std::endl;
 		std::cin >> dificuldadeFichas;
 		std::cout << std::endl;
@@ -47,6 +48,51 @@ int Fichas::compraFichas() {
 	else{
 
 		return fichasJogador;
+	}
+	
+}
+
+int Fichas::fichasIniciais() {
+	Jogador jogador;
+	Mesa mesa;
+	int escolhaJogador;
+	std::cout << "Quantas fichas você quer começar?" << std::endl << "Você pode escolher entre 100/500/1000" << std::endl << std::endl;
+	std::cin >> escolhaJogador;
+	
+	while (escolhaJogador != 100 && escolhaJogador != 500 && escolhaJogador != 1000) {
+		std::cout << "Por favor digite entre os três valoeres (100/500/1000)!" << std::endl;
+		std::cin >> escolhaJogador;
+	}
+	fichasJogador += escolhaJogador;
+	
+
+	return fichasJogador;
+	
+
+}
+
+void Fichas::aposta(int& saldoJogador) {
+	Jogador jogador;
+	Mesa mesa;
+
+	int aposta;
+
+	std::cout << "Qual será sua aposto (Valor minimo 25 fichas)" << std::endl;
+	std::cin >> aposta;
+
+	
+	while (aposta < 25) {
+		std::cout << "VALOR MINIMO 25 FICHAS!!!!" << std::endl;
+		std::cin >> aposta;
+	}
+	
+
+	
+	while (aposta > saldoJogador) {
+		std::cout << saldoJogador << std::endl;
+		std::cout << "Você não tem saldo para essa aposta" << std::endl;
+		std::cin >> aposta;
+		
 	}
 	
 }

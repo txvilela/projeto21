@@ -15,7 +15,7 @@ class Baralho;
 class Jogador {
 private:
 	std::vector <Carta> cartasjogador;
-	int saldoFichas = 0;
+	int saldoFichas;
 
 public:
 	Jogador();
@@ -25,6 +25,7 @@ public:
 	int calculaPontos();
 	int retornaSaldoFichas();
 	void comprafichas();
+	void inicioFichas();
 };
 
 #endif // !JOGADOR_HPP

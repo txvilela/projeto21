@@ -22,7 +22,9 @@ int main() {
 	Fichas fichas;
 
 	//baralho.imprimir();
-		
+	/*fichas.fichasIniciais();*/
+	jogador.inicioFichas();
+	
 
 		mesa.mesa(baralho.darCarta(), baralho.darCarta());
 		mesa.mostracartamesa();

@@ -62,6 +62,10 @@ int Mesa::calculaPontosMesa() {
 	}
 	return total;
 }
+
+int Mesa::retornaSaldoFichasMesa() {
+	return fichasMesa;
+}
 //if (jogador) {
 //	std::cout << std::endl;
 //	std::cout << "crupier " << std::endl;

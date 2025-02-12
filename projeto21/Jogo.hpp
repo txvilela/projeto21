@@ -15,7 +15,7 @@ class  Fichas {
 
 private:
 	int fichasJogador = 0;
-	int fichasMesa = 1000;
+	int fichasMesa = 0;
 
 
 
@@ -23,6 +23,9 @@ public:
 		
 	int veResultado(Mesa& mesa, Jogador& jogador);
 	int compraFichas();
+	int fichasIniciais();
+	void aposta(int& saldoJogador);
 };
+
 
 #endif
