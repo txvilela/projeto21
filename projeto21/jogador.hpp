@@ -1,14 +1,21 @@
-#pragma once
+#ifndef JOGADOR_HPP
+#define JOGADOR_HPP
+
+
 #include <iostream>
 #include <vector>
 #include <string>
-#include "baralho.hpp"
-#include "carta.hpp"
-#include "mesa.hpp"
+
+
+//#include "Jogo.hpp"
+
+class Carta;
+class Baralho;
 
 class Jogador {
 private:
 	std::vector <Carta> cartasjogador;
+	int saldoFichas;
 
 public:
 	Jogador();
@@ -16,5 +23,9 @@ public:
 	bool resposta();
 	void mostraCarta(const std::vector <Carta>& cartasjogador, const std::string& Titulo);
 	int calculaPontos();
+	int retornaSaldoFichas();
+	void comprafichas();
+	void inicioFichas();
 };
 
+#endif // !JOGADOR_HPP

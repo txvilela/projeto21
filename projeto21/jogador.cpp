@@ -1,8 +1,15 @@
 #include <iostream>
 #include "jogador.hpp"
+#include "baralho.hpp"
+#include "carta.hpp"
+#include "mesa.hpp"
+#include "Jogo.hpp"
 
-Jogador::Jogador() {}
+Jogador play;
 Mesa mesa;
+Fichas fichas;
+
+Jogador::Jogador(){}
 
 bool Jogador::maoJogador(const Carta& carta1, const Carta& carta2, Baralho& baralho) {
 	cartasjogador.push_back(carta1);
@@ -42,6 +49,14 @@ void Jogador::mostraCarta(const std::vector <Carta>& cartasjogador, const std::s
 
 bool Jogador::resposta() {
 	char resposta;
+	if (calculaPontos() == 21) {
+		std::cout << std::endl;
+		if (cartasjogador.size() == 2) {
+			std::cout << "Blackjack!!!" << std::endl << std::endl;
+		}
+		return false;
+	}
+
 	std::cout << std::endl << "Vai querer outra carta? (s/n)" << std::endl;
 	std::cin >> resposta;
 	resposta = std::tolower(resposta);
@@ -76,4 +91,23 @@ int Jogador::calculaPontos() {
 	return total;
 }
 
+int Jogador::retornaSaldoFichas() {
+	return saldoFichas;
+}
+
+
+void Jogador::inicioFichas() {
+	play.saldoFichas = fichas.fichasIniciais();
+	
+	std::cout << "Você começa com " << play.retornaSaldoFichas() << " fichas seu objetivo é zerar as " << mesa.retornaSaldoFichasMesa() << " fichas da mesa" << std::endl << std::endl;
+	/*std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;*/
+	fichas.aposta(play.retornaSaldoFichas());
+
+}
+
+void Jogador::comprafichas() {
+	
+	play.saldoFichas = fichas.compraFichas();
+	 std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
+}
 

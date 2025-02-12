@@ -1,4 +1,7 @@
-#pragma once
+#ifndef MESA_HPP
+#define MESA_HPP
+
+
 #include <iostream>
 #include <vector>
 #include "baralho.hpp"
@@ -8,6 +11,7 @@
 class Mesa {
 private:
 	std::vector <Carta> cartaMesa;
+	int fichasMesa = 1000;
 
 
 
@@ -17,5 +21,7 @@ public:
 	void mostracartamesa() const;
 	void mostratudo();
 	int calculaPontosMesa();
+	int retornaSaldoFichasMesa();
 };
 
+#endif // !MESA_HPP
