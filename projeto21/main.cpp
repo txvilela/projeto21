@@ -23,8 +23,12 @@ int main() {
 
 	//baralho.imprimir();
 	/*fichas.fichasIniciais();*/
-	jogador.inicioFichas();
 	
+		jogador.inicioFichas();
+	
+		double aposta = jogador.valorAposta();
+
+		std::cout  << std::endl << std::endl;
 
 		mesa.mesa(baralho.darCarta(), baralho.darCarta());
 		mesa.mostracartamesa();
@@ -34,9 +38,14 @@ int main() {
 			mesa.mostratudo();
 		}
 
-		std::cout << fichas.veResultado(mesa, jogador) << std::endl << std::endl;
+		std::cout << fichas.resultadojogador(jogador) << std::endl << std::endl;
+		std::cout << fichas.resultadoMesa(mesa) << std::endl << std::endl;
 
-		/*fichas.compraFichas();*/
+
+		double saldo = jogador.retornaSaldoFichas();
+		//double aposta = fichas.aposta(saldo);
+
+		jogador.condicaoDeVitoria(jogador, aposta, saldo);
 
 		jogador.comprafichas();
 

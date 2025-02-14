@@ -7,7 +7,7 @@ Baralho::Baralho() {
 	for (const auto& naipe_Carta : naipes) {
 
 		for (int valor = 1; valor <= 13; valor++) {
-			//if(valor == 10 || valor == 1) cartas especificas
+			if(valor == 10 || valor == 1) //cartas especificas
 			cartas.emplace_back(valor, naipe_Carta);
 
 		}

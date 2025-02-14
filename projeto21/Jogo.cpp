@@ -3,19 +3,21 @@
 #include "jogador.hpp"
 
 
-int Fichas::veResultado( Mesa& mesa,  Jogador& jogador) {
+double Fichas::resultadojogador( Jogador& jogador) {
 
-	int valorJogador = jogador.calculaPontos();
-
-	int valorMesa = mesa.calculaPontosMesa();
-
-
-	return valorMesa - valorJogador;
+	double valorJogador = jogador.calculaPontos();
+		return valorJogador;
 }
 
-int Fichas::compraFichas() {
+double Fichas::resultadoMesa(Mesa& mesa) {
+
+	double valorMesa = mesa.calculaPontosMesa();
+	return valorMesa;
+}
+
+double Fichas::compraFichas(double& saldoJogador) {
 	char res;
-	std::cout << "SUAS FICHAS!!!" << std::endl << fichasJogador << std::endl << std::endl << std::endl;
+	std::cout << "SUAS FICHAS!!!" << std::endl << saldoJogador << std::endl << std::endl << std::endl;
 	std::cout << "Quer mais fichas? (s/n)" << std::endl << std::endl;
 	std::cin >> res;
 	res = std::tolower(res);
@@ -28,7 +30,7 @@ int Fichas::compraFichas() {
 	}
 
 	if (res == 's') {
-		int dificuldadeFichas;
+		double dificuldadeFichas;
 		
 		/*std::cout << "Quantas fichas você quer começar (Dificuldade!!!)" << std::endl << std::endl;*/
 		std::cout << "Você pode escolher entre: 25 / 50 / 100" << std::endl;
@@ -39,23 +41,23 @@ int Fichas::compraFichas() {
 			std::cout << "Estcolha entre (25), (50) ou (100) Por favor!!!" << std::endl;
 		}
 
-		fichasJogador += dificuldadeFichas;
+		saldoJogador += dificuldadeFichas;
 
-		std::cout << fichasJogador << std::endl << std::endl << std::endl;
+		std::cout << saldoJogador << std::endl << std::endl << std::endl;
 
-		return fichasJogador;
+		return saldoJogador;
 	}
 	else{
 
-		return fichasJogador;
+		return saldoJogador;
 	}
 	
 }
 
-int Fichas::fichasIniciais() {
+double Fichas::fichasIniciais(double& saldoJogador) {
 	Jogador jogador;
 	Mesa mesa;
-	int escolhaJogador;
+	double escolhaJogador;
 	std::cout << "Quantas fichas você quer começar?" << std::endl << "Você pode escolher entre 100/500/1000" << std::endl << std::endl;
 	std::cin >> escolhaJogador;
 	
@@ -63,22 +65,22 @@ int Fichas::fichasIniciais() {
 		std::cout << "Por favor digite entre os três valoeres (100/500/1000)!" << std::endl;
 		std::cin >> escolhaJogador;
 	}
-	fichasJogador += escolhaJogador;
+	saldoJogador += escolhaJogador;
 	
 
-	return fichasJogador;
+	return saldoJogador;
 	
 
 }
 
-void Fichas::aposta(int& saldoJogador) {
+double Fichas::aposta(double& saldoJogador) {
 	Jogador jogador;
 	Mesa mesa;
 
 	
-	int aposta;
+	double aposta;
 
-	std::cout << "Qual será sua aposto (Valor minimo 25 fichas)" << std::endl;
+	std::cout << "Qual será sua aposta (Valor minimo 25 fichas)" << std::endl;
 	std::cin >> aposta;
 
 	
@@ -95,11 +97,19 @@ void Fichas::aposta(int& saldoJogador) {
 		std::cin >> aposta;
 		
 	}
-	 saldoJogador -= aposta;
+
+	  
+	 return aposta;
+
+
+	 //std::cout << saldoJogador << std::endl;
+
 	 /*std::cout << std::endl << std::endl << std::endl;
 	 std::cout << saldoJogador << std::endl;
 	 std::cout << std::endl << std::endl << std::endl;
 	*/
 }
+
+
 
 

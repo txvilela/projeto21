@@ -11,7 +11,7 @@
 class Mesa {
 private:
 	std::vector <Carta> cartaMesa;
-	int fichasMesa = 1000;
+	double fichasMesa = 1000;
 
 
 
@@ -20,8 +20,8 @@ public:
 	void mesa(const Carta& carta1, const Carta& carta2);
 	void mostracartamesa() const;
 	void mostratudo();
-	int calculaPontosMesa();
-	int retornaSaldoFichasMesa();
+	double calculaPontosMesa();
+	double retornaSaldoFichasMesa();
 };
 
 #endif // !MESA_HPP

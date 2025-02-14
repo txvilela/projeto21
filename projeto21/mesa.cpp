@@ -42,8 +42,8 @@ void Mesa::mostratudo(){
 	}
 }
 
-int Mesa::calculaPontosMesa() {
-	int total = 0;
+double Mesa::calculaPontosMesa() {
+	double total = 0;
 	for (const auto& cartas : cartaMesa) {
 		if (cartas.numero_Carta == 1) {
 			total += 11;
@@ -63,7 +63,7 @@ int Mesa::calculaPontosMesa() {
 	return total;
 }
 
-int Mesa::retornaSaldoFichasMesa() {
+double Mesa::retornaSaldoFichasMesa() {
 	return fichasMesa;
 }
 //if (jogador) {

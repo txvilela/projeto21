@@ -15,17 +15,19 @@ class Baralho;
 class Jogador {
 private:
 	std::vector <Carta> cartasjogador;
-	int saldoFichas;
+	double saldoFichas;
 
 public:
 	Jogador();
 	bool maoJogador(const Carta& carta1, const Carta& carta2, Baralho& baralho);
 	bool resposta();
 	void mostraCarta(const std::vector <Carta>& cartasjogador, const std::string& Titulo);
-	int calculaPontos();
-	int retornaSaldoFichas();
+	double calculaPontos();
+	double retornaSaldoFichas();
 	void comprafichas();
 	void inicioFichas();
+	void condicaoDeVitoria(Jogador& jogador, double& aposta, double& saldo);
+	double valorAposta();
 };
 
 #endif // !JOGADOR_HPP

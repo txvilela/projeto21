@@ -54,61 +54,84 @@ bool Jogador::resposta() {
 		if (cartasjogador.size() == 2) {
 			std::cout << "Blackjack!!!" << std::endl << std::endl;
 		}
-		return false;
-	}
+			return false;
+		}
 
-	std::cout << std::endl << "Vai querer outra carta? (s/n)" << std::endl;
-	std::cin >> resposta;
-	resposta = std::tolower(resposta);
-	std::cout << std::endl;
-
-	while (resposta != 'n' && resposta != 's') {
-		std::cout << "apenas s ou n!" << std::endl;
+		std::cout << std::endl << "Vai querer outra carta? (s/n)" << std::endl;
 		std::cin >> resposta;
 		resposta = std::tolower(resposta);
-	}
-	return resposta == 's';
-}
+		std::cout << std::endl;
 
-int Jogador::calculaPontos() {
-	int total = 0;
-	for (const auto& cartas : cartasjogador) {
-		if (cartas.numero_Carta == 1) {
-			total += 11;
+		while (resposta != 'n' && resposta != 's') {
+			std::cout << "apenas s ou n!" << std::endl;
+			std::cin >> resposta;
+			resposta = std::tolower(resposta);
 		}
-		else if (cartas.numero_Carta >= 11 && cartas.numero_Carta <= 13) {
-			total += 10;
-		}
-		else{
-			total += cartas.numero_Carta;
-		}
+		return resposta == 's';
 	}
-	for (const auto& cartas : cartasjogador) {
-		if (cartas.numero_Carta == 1 && total > 21) {
-			total -= 10;
-		}
-	}
-	return total;
-}
 
-int Jogador::retornaSaldoFichas() {
+
+	double Jogador::calculaPontos() {
+		int total = 0;
+		for (const auto& cartas : cartasjogador) {
+			if (cartas.numero_Carta == 1) {
+				total += 11;
+			}
+			else if (cartas.numero_Carta >= 11 && cartas.numero_Carta <= 13) {
+				total += 10;
+			}
+			else {
+				total += cartas.numero_Carta;
+			}
+		}
+		for (const auto& cartas : cartasjogador) {
+			if (cartas.numero_Carta == 1 && total > 21) {
+				total -= 10;
+			}
+		}
+		return total;
+	}
+
+double Jogador::retornaSaldoFichas() {
 	return saldoFichas;
 }
 
 
 void Jogador::inicioFichas() {
-	play.saldoFichas = fichas.fichasIniciais();
-	
-	std::cout << "Você começa com " << play.retornaSaldoFichas() << " fichas seu objetivo é zerar as " << mesa.retornaSaldoFichasMesa() << " fichas da mesa" << std::endl << std::endl;
-	/*std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;*/
+	if (play.retornaSaldoFichas() <= 0) {
 
-	fichas.aposta(play.saldoFichas);
+		play.saldoFichas = fichas.fichasIniciais(play.saldoFichas);
 
+		std::cout << "Você começa com " << play.retornaSaldoFichas() << " fichas seu objetivo é zerar as " << mesa.retornaSaldoFichasMesa() << " fichas da mesa" << std::endl << std::endl;
+		/*std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;*/
+
+		/*play.saldoFichas -= fichas.aposta(play.saldoFichas);*/
+
+		std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
+	}
+
+}
+double Jogador::valorAposta() {
+	double aposta = fichas.aposta(play.saldoFichas);
+	play.saldoFichas -= aposta;
+
+	std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
+	return aposta;
 }
 
 void Jogador::comprafichas() {
 	
-	play.saldoFichas = fichas.compraFichas();
+	//play.saldoFichas = fichas.compraFichas(play.saldoFichas); // so para testar se esta discontando as fichas do lugar certo
 	 std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
 }
 
+void Jogador::condicaoDeVitoria(Jogador& jogador, double& aposta, double& saldo) {
+	int pontos = fichas.resultadojogador(jogador);
+		if (pontos == 21) {
+			saldo += aposta + (aposta * 1.5);
+		 std::cout << saldo << "SALDO TOTAL!!MULTIPLICADO " << std::endl;
+
+		
+	}
+	
+}

@@ -14,17 +14,19 @@ class  Fichas {
 
 
 private:
-	int fichasJogador = 0;
-	int fichasMesa = 0;
+	double fichasJogador = 0;
+	double fichasMesa = 0;
 
 
 
 public:
 		
-	int veResultado(Mesa& mesa, Jogador& jogador);
-	int compraFichas();
-	int fichasIniciais();
-	void aposta(int& saldoJogador);
+	double resultadojogador(Jogador& jogador);
+	double resultadoMesa(Mesa& mesa);
+	double compraFichas(double& saldoJogador);
+	double fichasIniciais(double& saldoJogador);
+	double aposta(double& saldoJogador);
+
 };
 
 
