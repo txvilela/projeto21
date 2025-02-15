@@ -126,12 +126,25 @@ void Jogador::comprafichas() {
 }
 
 void Jogador::condicaoDeVitoria(Jogador& jogador, double& aposta, double& saldo) {
-	int pontos = fichas.resultadojogador(jogador);
-		if (pontos == 21) {
-			saldo += aposta + (aposta * 1.5);
-		 std::cout << saldo << "SALDO TOTAL!!MULTIPLICADO " << std::endl;
+	int pontosJogador = fichas.resultadojogador(jogador);
+	int pontosMesa = fichas.resultadoMesa(mesa);
 
-		
+
+	if (pontosJogador <= 21) {
+
+		if (cartasjogador.size() == 2 && pontosJogador == 21) {
+			saldo += aposta + (aposta * 1.5);
+			std::cout << saldo << " Parabés você fez um Blackjack!!! " << std::endl;
+		}
+
+		else if (pontosMesa >= 22 || pontosJogador > pontosMesa && pontosJogador <= 21 && cartasjogador.size() > 2) {
+			saldo += aposta + aposta;
+			std::cout << saldo << " Parabés você ganhou!!! " << std::endl;
+		}
+		else if(pontosJogador == pontosMesa){
+			saldo += aposta;
+			std::cout << saldo << " empate!!! " << std::endl;
+		}
 	}
 	
 }
