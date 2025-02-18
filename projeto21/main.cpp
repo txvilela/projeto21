@@ -38,14 +38,17 @@ int main() {
 			mesa.mostratudo();
 		}
 
-		std::cout << fichas.resultadojogador(jogador) << std::endl << std::endl;
-		std::cout << fichas.resultadoMesa(mesa) << std::endl << std::endl;
+		/*std::cout << fichas.resultadojogador(jogador) << std::endl << std::endl;
+		std::cout << fichas.resultadoMesa(mesa) << std::endl << std::endl;*/
+
+		double resJoga = fichas.resultadojogador(jogador);
+		double resMesa = fichas.resultadoMesa(mesa);
 
 
 		double saldo = jogador.retornaSaldoFichas();
 		//double aposta = fichas.aposta(saldo);
 
-		jogador.condicaoDeVitoria(jogador, aposta, saldo);
+		jogador.ganhou(aposta, saldo, resJoga, resMesa);
 
 		jogador.comprafichas();
 

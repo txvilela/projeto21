@@ -15,6 +15,8 @@ bool Jogador::maoJogador(const Carta& carta1, const Carta& carta2, Baralho& bara
 	cartasjogador.push_back(carta1);
 	cartasjogador.push_back(carta2);
 	
+	std::cout << "Cartas adicionadas: " << cartasjogador.size() << std::endl; // Debug
+
 	mostraCarta(cartasjogador, "Suas Cartas");
 
 			
@@ -125,26 +127,47 @@ void Jogador::comprafichas() {
 	 std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
 }
 
-void Jogador::condicaoDeVitoria(Jogador& jogador, double& aposta, double& saldo) {
-	int pontosJogador = fichas.resultadojogador(jogador);
-	int pontosMesa = fichas.resultadoMesa(mesa);
+void Jogador::ganhou(double& saldoJ, double& apostaJ, double pontosJo, double pontosMe) {
+	saldoJ += play.condicaoDeVitoria(apostaJ, saldoJ,pontosJo, pontosMe);
+}
 
+size_t Jogador::retornaNumeroCartas() {
+	std::cout << "Chamei retornaNumeroCartas(): " << cartasjogador.size() << std::endl; // Debug
+	return cartasjogador.size();
 
-	if (pontosJogador <= 21) {
+}
 
-		if (cartasjogador.size() == 2 && pontosJogador == 21) {
+double Jogador::condicaoDeVitoria(double& aposta, double& saldo, double pontosJo, double pontosMe) {
+	size_t numCartas = retornaNumeroCartas();
+
+	std::cout << pontosJo << "    " << pontosMe << " os pontos " << std::endl;
+	if (pontosJo <= 21) {
+		std::cout <<  " numero de cartas " << numCartas << std::endl;
+		
+		if (pontosJo == 21 && numCartas == 2) {
 			saldo += aposta + (aposta * 1.5);
 			std::cout << saldo << " Parabés você fez um Blackjack!!! " << std::endl;
+			return saldo;
+		}
+		if (pontosJo > pontosMe) {
+			std::cout << " os pontos JO MAIOR QUE MESA"  << std::endl;
 		}
 
-		else if (pontosMesa >= 22 || pontosJogador > pontosMesa && pontosJogador <= 21 && cartasjogador.size() > 2) {
+		else if (pontosMe >= 22 && pontosJo > pontosMe && pontosJo <= 21 && numCartas > 2) {
 			saldo += aposta + aposta;
 			std::cout << saldo << " Parabés você ganhou!!! " << std::endl;
+			return saldo;
 		}
-		else if(pontosJogador == pontosMesa){
+		else if(pontosJo == pontosMe && pontosMe <= 21){
 			saldo += aposta;
 			std::cout << saldo << " empate!!! " << std::endl;
+			std::cout << pontosJo <<"    " << pontosMe << " empate!!! " << std::endl;
+			return saldo;
 		}
+		/*else{
+			std::cout << saldo << " Perdeu!!! " << std::endl;
+			return saldo;
+		}*/
 	}
 	
 }

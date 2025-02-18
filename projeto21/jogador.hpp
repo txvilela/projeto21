@@ -19,14 +19,18 @@ private:
 
 public:
 	Jogador();
+
+	size_t retornaNumeroCartas();
+
 	bool maoJogador(const Carta& carta1, const Carta& carta2, Baralho& baralho);
 	bool resposta();
 	void mostraCarta(const std::vector <Carta>& cartasjogador, const std::string& Titulo);
 	double calculaPontos();
 	double retornaSaldoFichas();
 	void comprafichas();
+	void ganhou(double& saldo, double& aposta, double pontosJo, double pontosMe);
 	void inicioFichas();
-	void condicaoDeVitoria(Jogador& jogador, double& aposta, double& saldo);
+	double condicaoDeVitoria(double& aposta, double& saldo, double pontosJo, double pontosMe);
 	double valorAposta();
 };
 
