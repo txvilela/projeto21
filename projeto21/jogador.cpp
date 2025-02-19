@@ -5,19 +5,20 @@
 #include "mesa.hpp"
 #include "Jogo.hpp"
 
-Jogador play;
+Jogador jogador;
 Mesa mesa;
 Fichas fichas;
 
 Jogador::Jogador(){}
 
 bool Jogador::maoJogador(const Carta& carta1, const Carta& carta2, Baralho& baralho) {
-	cartasjogador.push_back(carta1);
-	cartasjogador.push_back(carta2);
+	jogador.Cartasjogador.clear();
+	jogador.Cartasjogador.push_back(carta1);
+	jogador.Cartasjogador.push_back(carta2);
 	
-	std::cout << "Cartas adicionadas: " << cartasjogador.size() << std::endl; // Debug
+	//std::cout << "Cartas adicionadas: " << jogador.Cartasjogador.size() << std::endl; // Debug
 
-	mostraCarta(cartasjogador, "Suas Cartas");
+	mostraCarta(jogador.Cartasjogador, "Suas Cartas");
 
 			
 	while (true) {
@@ -26,11 +27,11 @@ bool Jogador::maoJogador(const Carta& carta1, const Carta& carta2, Baralho& bara
 			return false;
 		}
 		if (resposta())  {
-			cartasjogador.push_back(baralho.darCarta());
-			mostraCarta(cartasjogador, "Suas Cartas");
+			jogador.Cartasjogador.push_back(baralho.darCarta());
+			mostraCarta(jogador.Cartasjogador, "Suas Cartas");
 		}
 		else{
-			mostraCarta(cartasjogador, "Suas Cartas finais!!!");
+			mostraCarta(jogador.Cartasjogador, "Suas Cartas finais!!!");
 			return false;
 		}
 	}
@@ -53,7 +54,7 @@ bool Jogador::resposta() {
 	char resposta;
 	if (calculaPontos() == 21) {
 		std::cout << std::endl;
-		if (cartasjogador.size() == 2) {
+		if (jogador.Cartasjogador.size() == 2) {
 			std::cout << "Blackjack!!!" << std::endl << std::endl;
 		}
 			return false;
@@ -75,7 +76,7 @@ bool Jogador::resposta() {
 
 	double Jogador::calculaPontos() {
 		int total = 0;
-		for (const auto& cartas : cartasjogador) {
+		for (const auto& cartas : jogador.Cartasjogador) {
 			if (cartas.numero_Carta == 1) {
 				total += 11;
 			}
@@ -86,7 +87,7 @@ bool Jogador::resposta() {
 				total += cartas.numero_Carta;
 			}
 		}
-		for (const auto& cartas : cartasjogador) {
+		for (const auto& cartas : jogador.Cartasjogador) {
 			if (cartas.numero_Carta == 1 && total > 21) {
 				total -= 10;
 			}
@@ -94,80 +95,86 @@ bool Jogador::resposta() {
 		return total;
 	}
 
-double Jogador::retornaSaldoFichas() {
+double Jogador::retornaSaldoFichas(Jogador& jogador) {
 	return saldoFichas;
 }
 
 
-void Jogador::inicioFichas() {
-	if (play.retornaSaldoFichas() <= 0) {
+void Jogador::inicioFichas(Jogador& jogador) {
+	if (jogador.retornaSaldoFichas(jogador) <= 0) {
 
-		play.saldoFichas = fichas.fichasIniciais(play.saldoFichas);
+		jogador.saldoFichas = fichas.fichasIniciais(jogador.saldoFichas);
 
-		std::cout << "Você começa com " << play.retornaSaldoFichas() << " fichas seu objetivo é zerar as " << mesa.retornaSaldoFichasMesa() << " fichas da mesa" << std::endl << std::endl;
+		std::cout << "Você começa com " << jogador.retornaSaldoFichas(jogador) << " fichas seu objetivo é zerar as " << mesa.retornaSaldoFichasMesa() << " fichas da mesa" << std::endl << std::endl;
 		/*std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;*/
 
 		/*play.saldoFichas -= fichas.aposta(play.saldoFichas);*/
 
-		std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
+		std::cout << jogador.retornaSaldoFichas(jogador) << "  SALDO FICHAS" << std::endl;
 	}
 
 }
-double Jogador::valorAposta() {
-	double aposta = fichas.aposta(play.saldoFichas);
-	play.saldoFichas -= aposta;
+double Jogador::valorAposta(Jogador& jogador) {
+	double aposta = fichas.aposta(jogador.saldoFichas);
+	jogador.saldoFichas -= aposta;
 
-	std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
+	std::cout << jogador.retornaSaldoFichas(jogador) << "  SALDO FICHAS" << std::endl;
 	return aposta;
 }
 
-void Jogador::comprafichas() {
+void Jogador::comprafichas(Jogador& jogador) {
 	
 	//play.saldoFichas = fichas.compraFichas(play.saldoFichas); // so para testar se esta discontando as fichas do lugar certo
-	 std::cout << play.retornaSaldoFichas() << "  SALDO FICHAS" << std::endl;
+	 std::cout << jogador.retornaSaldoFichas(jogador) << "  SALDO FICHAS" << std::endl;
 }
 
 void Jogador::ganhou(double& saldoJ, double& apostaJ, double pontosJo, double pontosMe) {
-	saldoJ += play.condicaoDeVitoria(apostaJ, saldoJ,pontosJo, pontosMe);
+	double vitoria = jogador.condicaoDeVitoria(apostaJ, saldoJ, pontosJo, pontosMe);
+	std::cout << vitoria << " VITORIA" << std::endl;
+	std::cout << saldoJ << "saldoJ" << std::endl;
+
+	saldoJ += vitoria;
 }
 
-size_t Jogador::retornaNumeroCartas() {
-	std::cout << "Chamei retornaNumeroCartas(): " << cartasjogador.size() << std::endl; // Debug
+size_t Jogador::retornaNumeroCartas(const std::vector <Carta>& cartasjogador) {
+	//std::cout << "Chamei retornaNumeroCartas(): " << cartasjogador.size() << std::endl; // Debug
 	return cartasjogador.size();
 
 }
 
 double Jogador::condicaoDeVitoria(double& aposta, double& saldo, double pontosJo, double pontosMe) {
-	size_t numCartas = retornaNumeroCartas();
+	std::cout << std::endl << std::endl;
 
 	std::cout << pontosJo << "    " << pontosMe << " os pontos " << std::endl;
 	if (pontosJo <= 21) {
-		std::cout <<  " numero de cartas " << numCartas << std::endl;
-		
-		if (pontosJo == 21 && numCartas == 2) {
+		//std::cout <<  " numero de cartas " << retornaNumeroCartas(jogador.Cartasjogador) << std::endl;
+		if (pontosJo == 21 && retornaNumeroCartas(jogador.Cartasjogador) == 2) {
 			saldo += aposta + (aposta * 1.5);
 			std::cout << saldo << " Parabés você fez um Blackjack!!! " << std::endl;
 			return saldo;
 		}
-		if (pontosJo > pontosMe) {
-			std::cout << " os pontos JO MAIOR QUE MESA"  << std::endl;
-		}
 
-		else if (pontosMe >= 22 && pontosJo > pontosMe && pontosJo <= 21 && numCartas > 2) {
+		else if (pontosMe > 21) {
 			saldo += aposta + aposta;
 			std::cout << saldo << " Parabés você ganhou!!! " << std::endl;
 			return saldo;
 		}
+		
+		else if (pontosJo > pontosMe) {
+			saldo += aposta + aposta;
+			std::cout << saldo << " Parabés você ganhou!!! " << std::endl;
+			return saldo;			
+		}
+
 		else if(pontosJo == pontosMe && pontosMe <= 21){
 			saldo += aposta;
 			std::cout << saldo << " empate!!! " << std::endl;
-			std::cout << pontosJo <<"    " << pontosMe << " empate!!! " << std::endl;
 			return saldo;
 		}
-		/*else{
+		else{
 			std::cout << saldo << " Perdeu!!! " << std::endl;
 			return saldo;
-		}*/
+		}
 	}
 	
 }

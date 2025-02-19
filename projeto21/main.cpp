@@ -10,10 +10,11 @@
 #include "Jogo.hpp"
 
 int main() {
+	srand(static_cast<unsigned int>(time(0)));
+
 	
-	while (true) {
 	
-		srand(static_cast<unsigned int>(time(0)));
+		
 	
 	
 	Baralho baralho;
@@ -23,10 +24,12 @@ int main() {
 
 	//baralho.imprimir();
 	/*fichas.fichasIniciais();*/
+	while (true) {
+		std::cout << jogador.retornaSaldoFichas(jogador) << " volta do lup " << std::endl; // debug
+
+		jogador.inicioFichas(jogador);
 	
-		jogador.inicioFichas();
-	
-		double aposta = jogador.valorAposta();
+		double aposta = jogador.valorAposta(jogador);
 
 		std::cout  << std::endl << std::endl;
 
@@ -45,13 +48,17 @@ int main() {
 		double resMesa = fichas.resultadoMesa(mesa);
 
 
-		double saldo = jogador.retornaSaldoFichas();
+		double saldo = jogador.retornaSaldoFichas(jogador);
+
+		std::cout << saldo << "  SALDO MAIN     " << std::endl;
 		//double aposta = fichas.aposta(saldo);
 
-		jogador.ganhou(aposta, saldo, resJoga, resMesa);
+		jogador.ganhou(saldo, aposta , resJoga, resMesa);
 
-		jogador.comprafichas();
+		jogador.comprafichas(jogador);
 
+
+		std::cout << jogador.retornaSaldoFichas(jogador) << std::endl;
 		//chama_Mesa(baralho.darCarta(), baralho.darCarta(), baralho.darCarta(), baralho.darCarta());
 		std::cout << "Quer parar?" << std::endl;
 		std::string respostinha;
