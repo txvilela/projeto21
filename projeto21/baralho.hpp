@@ -1,7 +1,13 @@
-#pragma once
+#ifndef BARALHO_HPP
+#define BARALHO_HPP
+
+
+
+
 #include <iostream>
 #include <vector>
-#include "carta.hpp"
+
+class Carta;
 
 class Baralho {
 private:
@@ -23,3 +29,5 @@ public:
 	Carta darCarta();
 
 };
+
+#endif 

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CARTA_HPP
+#define CARTA_HPP
+
 #include <iostream>
 
 
@@ -15,3 +17,4 @@ public:
 };
 
 
+#endif

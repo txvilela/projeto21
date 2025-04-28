@@ -10,10 +10,11 @@
 #include "Jogo.hpp"
 
 int main() {
-	
-	while (true) {
-	
 	srand(static_cast<unsigned int>(time(0)));
+
+	
+	
+		
 	
 	
 	Baralho baralho;
@@ -22,7 +23,16 @@ int main() {
 	Fichas fichas;
 
 	//baralho.imprimir();
+	/*fichas.fichasIniciais();*/
+	while (true) {
+		std::cout << jogador.retornaSaldoFichas(jogador) << " volta do lup " << std::endl; // debug
+
+		jogador.inicioFichas(jogador);
 	
+		double aposta = jogador.valorAposta(jogador);
+
+		std::cout  << std::endl << std::endl;
+
 		mesa.mesa(baralho.darCarta(), baralho.darCarta());
 		mesa.mostracartamesa();
 
@@ -31,7 +41,24 @@ int main() {
 			mesa.mostratudo();
 		}
 
-		std::cout << fichas.veResultado(mesa, jogador) << std::endl << std::endl;
+		/*std::cout << fichas.resultadojogador(jogador) << std::endl << std::endl;
+		std::cout << fichas.resultadoMesa(mesa) << std::endl << std::endl;*/
+
+		double resJoga = fichas.resultadojogador(jogador);
+		double resMesa = fichas.resultadoMesa(mesa);
+
+
+		double saldo = jogador.retornaSaldoFichas(jogador);
+
+		std::cout << saldo << "  SALDO MAIN     " << std::endl;
+		//double aposta = fichas.aposta(saldo);
+
+		jogador.ganhou(saldo, aposta , resJoga, resMesa);
+
+		jogador.comprafichas(jogador);
+
+
+		std::cout << jogador.retornaSaldoFichas(jogador) << std::endl;
 		//chama_Mesa(baralho.darCarta(), baralho.darCarta(), baralho.darCarta(), baralho.darCarta());
 		std::cout << "Quer parar?" << std::endl;
 		std::string respostinha;
